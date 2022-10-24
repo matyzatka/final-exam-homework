@@ -24,8 +24,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
 
-  private final ItemRepository itemRepository;
   private final ModelMapper modelMapper;
+  private final ItemRepository itemRepository;
   private final BidRepository bidRepository;
   private final CustomerRepository customerRepository;
 
@@ -92,7 +92,7 @@ public class ItemServiceImpl implements ItemService {
   @Override
   public Item getItemById(Long id) {
     Optional<Item> item = itemRepository.findById(id);
-    if (!item.isPresent()) {
+    if (item.isEmpty()) {
       throw new NoSuchItemException("Item service: getSellableDtoById()");
     }
     return item.get();

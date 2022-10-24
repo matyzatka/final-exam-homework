@@ -1,6 +1,7 @@
 package com.gfa.homework.security;
 
 import com.gfa.homework.models.dtos.UsernamePasswordDto;
+import com.gfa.homework.repositories.CustomerRepository;
 import com.gfa.homework.security.SecurityConfiguration.CustomAuthorizationFilter;
 import com.gfa.homework.services.CustomerService;
 import org.junit.jupiter.api.Test;
@@ -24,9 +25,11 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 class CustomAuthorizationFilterTest {
 
   @Autowired CustomerService customerService;
+  @Autowired CustomerRepository customerRepository;
 
   @Test
   public void custom_filter_test() throws ServletException, IOException {
+    customerRepository.deleteAll();
     customerService.saveNewCustomer(new UsernamePasswordDto("user", "password"));
     String bearerToken =
         "Bearer " + customerService.getToken(customerService.getUserDetailsByUsername("user"));

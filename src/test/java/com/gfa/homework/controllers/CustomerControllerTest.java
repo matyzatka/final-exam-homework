@@ -7,7 +7,6 @@ import com.gfa.homework.exceptions.NoSuchCustomerException;
 import com.gfa.homework.models.dtos.UsernamePasswordDto;
 import com.gfa.homework.repositories.CustomerRepository;
 import com.gfa.homework.services.CustomerService;
-import org.hamcrest.core.Is;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +25,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 class CustomerControllerTest {
 
+  private final ObjectMapper objectMapper = new ObjectMapper();
   @Autowired private MockMvc mockMvc;
   @Autowired private CustomerService customerService;
   @Autowired private CustomerRepository customerRepository;
-  private final ObjectMapper objectMapper = new ObjectMapper();
 
   @BeforeEach
   void init() {

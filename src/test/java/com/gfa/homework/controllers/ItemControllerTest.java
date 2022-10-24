@@ -32,12 +32,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc(addFilters = false)
 class ItemControllerTest {
 
+  private final ObjectMapper objectMapper = new ObjectMapper();
   @Autowired private MockMvc mockMvc;
   @Autowired private CustomerService customerService;
   @Autowired private ItemService itemService;
   @Autowired private CustomerRepository customerRepository;
   @Autowired private ItemRepository itemRepository;
-  private final ObjectMapper objectMapper = new ObjectMapper();
 
   @BeforeEach
   void init() {
