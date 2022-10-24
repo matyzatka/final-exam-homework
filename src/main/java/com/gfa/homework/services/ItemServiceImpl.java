@@ -92,7 +92,7 @@ public class ItemServiceImpl implements ItemService {
   @Override
   public Item getItemById(Long id) {
     Optional<Item> item = itemRepository.findById(id);
-    if (item.isEmpty()) {
+    if (!item.isPresent()) {
       throw new NoSuchItemException("Item service: getSellableDtoById()");
     }
     return item.get();
