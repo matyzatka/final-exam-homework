@@ -7,6 +7,7 @@ import com.auth0.jwt.interfaces.JWTVerifier;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gfa.homework.exceptions.AccessDeniedException;
 import io.github.cdimascio.dotenv.Dotenv;
+import lombok.Getter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,6 +39,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Configuration
 @EnableWebSecurity
+@Getter
 public class SecurityConfiguration {
 
   public static final int TOKEN_EXPIRATION_TIME = 3600000;
@@ -67,7 +69,7 @@ public class SecurityConfiguration {
     return httpSecurity.build();
   }
 
-  private final class CustomAuthorizationFilter extends OncePerRequestFilter {
+  static final class CustomAuthorizationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(
